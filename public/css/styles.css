@@ -1,0 +1,64 @@
+*{
+  background-color: #C2C3BE;
+}
+
+h1{
+  font-family: 'Alfa Slab One', cursive;
+  color: #404142;
+}
+
+h1 span{
+  color: #A3A49F;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+.line{
+  color: #B9514A;
+}
+
+
+.color-generator{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.color{
+  height: 50vh;
+  width: 18vw;
+  background-color: #DFDFDF;
+  box-shadow: 5px 5px 5px #A3A49F;
+}
+
+button{
+  background-color: #404142;
+  color: #A3A49F;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  margin: 2%;
+  padding: 1% 8%;
+  font-size: 24px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+  align-items: center;
+}
+
+form{
+  display: flex;
+  direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+input{
+  background-color: #DFDFDF;
+  font-size: 24px;
+  font-family: 'Open Sans', sans-serif;
+
+}
