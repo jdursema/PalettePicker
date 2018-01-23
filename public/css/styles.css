@@ -27,11 +27,15 @@ h1 span{
 
 }
 
-.color{
+.card{
   height: 50vh;
   width: 18vw;
-  background-color: #DFDFDF;
+  background-color: #F9F5EF;
   box-shadow: 5px 5px 5px #A3A49F;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 button{
@@ -91,9 +95,106 @@ select{
   justify-content: center;
 }
 
+/* .projects-hiden{
+  background-image: url('./Cardboard1.jpg');
+  background-size: cover;
+  width: 5vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  right: 0px;
+  
+} */
+
+.projects-hiden .all-projects {
+  display: none;
+}
+
+.projects-shown {
+  background-image: url('./Cardboard1.jpg');
+  background-size: cover;
+  width: 40vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .menu-icon{
   background-image: url('./arrow.svg');
   background-size: cover;
   width: 2vw;
   height: 4vh;
+  align-self: center;
+  
+}
+
+.color{
+  width: 10vw;
+  height: 20vh;
+}
+
+.color-name{
+  border-top: #B53B38 2px solid;
+  font-family: 'Open Sans', sans-serif;
+  color: #A3A49F;
+  font-weight: 300;
+  font-size: 24px;
+  padding: 2% 3%;
+}
+
+h3{
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 36px;
+}
+
+.all-projects{
+  display: flex;
+  /* height: 1000px; */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: nowrap;
+  overflow-y: auto;
+}
+
+.palette-card{
+  
+  /* height: 20vh; */
+  display: flex;
+  justify-content: space-around;
+  padding: 2%;
+}
+
+.project{
+  background-color: #F9F5EF;
+  width: 30vw;
+  /* height: 175px; */
+  /* display: flex;
+  flex-direction: column; */
+  margin: 3% 0;
+}
+
+.palette-color{
+  background-color: #8921F8;
+  width: 5vw;
+  height: 10vh;
+}
+
+h4{
+  align-self: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  margin: 1%;
+  color: #404142;
+  font-weight: 300;
+  text-align: center;
+
 }
