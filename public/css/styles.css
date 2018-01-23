@@ -1,10 +1,12 @@
-*{
+body{
   background-color: #C2C3BE;
 }
 
 h1{
   font-family: 'Alfa Slab One', cursive;
   color: #404142;
+  font-size: 48px;
+  margin: 1%;
 }
 
 h1 span{
@@ -14,7 +16,7 @@ h1 span{
 }
 
 .line{
-  color: #B9514A;
+  color: #B53B38;
 }
 
 
@@ -41,18 +43,25 @@ button{
   padding: 1% 8%;
   font-size: 24px;
   text-transform: uppercase;
+}
+
+button:hover{
+  background-color: #626364;
+}
+
+button:active{
+  background-color: #B53B38;
+}
+
+.btn-div{
   display: flex;
   justify-content: center;
-  align-self: center;
-  align-content: center;
-  align-items: center;
 }
 
 form{
   display: flex;
   direction: row;
   align-items: center;
-  align-content: center;
   justify-content: center;
 }
 
@@ -60,5 +69,31 @@ input{
   background-color: #DFDFDF;
   font-size: 24px;
   font-family: 'Open Sans', sans-serif;
+}
 
+select{
+  background-color: #DFDFDF;
+  font-size: 24px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.projects-hiden{
+  background-image: url('./Cardboard1.jpg');
+  background-size: cover;
+  width: 3vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon{
+  background-image: url('./arrow.svg');
+  background-size: cover;
+  width: 2vw;
+  height: 4vh;
 }
