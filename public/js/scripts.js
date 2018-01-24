@@ -11,9 +11,11 @@ const generateColor = () => {
 const generatePalette = () => {
   const boxArray = $('.color')
   boxArray.each(function() {
-    let color = generateColor()
-    $( this ).css('background-color', color)
-    $(this).next().text(color)
+    if(!$(this).next().next().hasClass('locked')){
+      let color = generateColor()
+      $( this ).css('background-color', color)
+      $(this).next().text(color)
+    }
   })
 }
 
@@ -39,4 +41,4 @@ const changeLock = (event) => {
 $('document').ready(generatePalette);
 $('.menu-icon').on('click', openMenu)
 $('.generate-btn').on('click', generatePalette);
-$('.card').on('click', changeLock)
+$('.padlock').on('click', changeLock)
