@@ -14,9 +14,10 @@ const generatePalette = () => {
     let color = generateColor()
     $( this ).css('background-color', color)
     $(this).next().text(color)
-    
   })
 }
+
+
 
 const openMenu = () => {
   if($('.projects').hasClass('projects-hiden')) {
@@ -28,9 +29,14 @@ const openMenu = () => {
   }
 }
 
+const changeLock = (event) => {
+  ($(event.target)).toggleClass('locked')
+}
+
 
 
 
 $('document').ready(generatePalette);
 $('.menu-icon').on('click', openMenu)
 $('.generate-btn').on('click', generatePalette);
+$('.card').on('click', changeLock)
