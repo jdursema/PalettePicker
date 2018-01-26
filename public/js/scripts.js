@@ -118,23 +118,7 @@ const postProject = async (event) => {
       },
       body: JSON.stringify(paletteObj)
     })
-    $('.project-holder').append(`<h5>${projectName}</h5> <div class='project ${projectName}'></div>`)
 
-    $(`.${projectName}`).append(`
-      <h4>${projectName}</h4>
-      <div class='palette-card'>
-        <div class='palette-color ${paletteObj.name}color1'></div>
-        <div class='palette-color ${paletteObj.name}color2'></div>
-        <div class='palette-color ${paletteObj.name}color3'></div>
-        <div class='palette-color ${paletteObj.name}color4'></div>
-        <div class='palette-color ${paletteObj.name}color5'></div>
-      </div>`)
-      $(`.${paletteObj.name}color1`).css('background-color', palette.color_1)
-      $(`.${paletteObj.name}color2`).css('background-color', palette.color_2)
-      $(`.${paletteObj.name}color3`).css('background-color', palette.color_3)
-      $(`.${paletteObj.name}color4`).css('background-color', palette.color_4)
-      $(`.${paletteObj.name}color5`).css('background-color', palette.color_5)
-  
   } else {
     const newPalettePost = await fetch(`/api/v1/projects/${existingProject.id}/palettes`, {
       method: 'POST',
@@ -144,22 +128,10 @@ const postProject = async (event) => {
       body: JSON.stringify(paletteObj)
     })
 
-    $(`.${existingProject.name}`).append(`
-      <h4>${paletteObj.name}</h4>
-      <div class='palette-card'>
-        <div class='palette-color ${paletteObj.name}color1'></div>
-        <div class='palette-color ${paletteObj.name}color2'></div>
-        <div class='palette-color ${paletteObj.name}color3'></div>
-        <div class='palette-color ${paletteObj.name}color4'></div>
-        <div class='palette-color ${paletteObj.name}color5'></div>
-      </div>`)
-      $(`.${paletteObj.name}color1`).css('background-color', palette.color_1)
-      $(`.${paletteObj.name}color2`).css('background-color', palette.color_2)
-      $(`.${paletteObj.name}color3`).css('background-color', palette.color_3)
-      $(`.${paletteObj.name}color4`).css('background-color', palette.color_4)
-      $(`.${paletteObj.name}color5`).css('background-color', palette.color_5)
   }
-  
+
+  $('.project-holder').children().remove()
+  fetchProjects()
 }
 
 
