@@ -29,7 +29,7 @@ h1 span{
 .card{
   height: 50vh;
   width: 18vw;
-  background-color: #F9F5EF;
+  background-image: url('./paper.jpg');
   box-shadow: 5px 5px 5px #A3A49F;
   display: flex;
   flex-direction: column;
@@ -112,6 +112,14 @@ select{
   justify-content: center;
 }
 
+.projects-shown .menu-icon {
+  background-image: url('./arrow-point-to-right.svg');
+  background-size: cover;
+  width: 2vw;
+  height: 4vh;
+  align-self: center; 
+}
+
 .menu-icon{
   background-image: url('./arrow.svg');
   background-size: cover;
@@ -148,6 +156,7 @@ h3{
   align-content: center;
   flex-wrap: nowrap;
   overflow-y: auto;
+  margin: 0 8%;
 }
 
 .palette-card{
@@ -189,4 +198,14 @@ h4{
 
 .locked{
   background-image: url('./padlock.svg')
+}
+
+.tack{
+  height: 35px;
+  width: 35px;
+  background-image: url('./sphere6.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  margin-bottom: 8%
 }
