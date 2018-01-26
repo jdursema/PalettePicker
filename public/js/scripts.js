@@ -37,7 +37,7 @@ const changeLock = (event) => {
 }
 
 const fetchProjects = async() => {
-  const initialFetch = await fetch('http://localhost:3000/api/v1/projects', {
+  const initialFetch = await fetch('/api/v1/projects', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const fetchProjects = async() => {
 
 const fetchPalettes = async(projectsArray) => {
 
-  const initialFetch = await fetch (`http://localhost:3000/api/v1/palettes`)
+  const initialFetch = await fetch (`/api/v1/palettes`)
   const paletteResponse = await initialFetch.json()
   mapPalettesToProject(projectsArray, paletteResponse.palettes)
 }
@@ -93,7 +93,7 @@ const appendProjects = (projectsArray) => {
 const postProject = async (event) => {
   event.preventDefault()
   const projectName = $('.project-name-input').val()
-  const responseProjects = await fetch (`http://localhost:3000/api/v1/projects`)
+  const responseProjects = await fetch (`/api/v1/projects`)
   const fetchedProjects= await responseProjects.json()
   const projectsArray = fetchedProjects.projects
   const existingProject = projectsArray.find(project => projectName === project.name)
