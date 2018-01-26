@@ -1,4 +1,4 @@
-let projects
+let projects;
 
 const generateColor = () => {
   let hex = '#'
@@ -59,23 +59,27 @@ const mapPalettesToProject = (projects, palettes) => {
     const filteredPalettes = palettes.filter(palette => palette.project_id === project.id)
     return { ...project, palettes: filteredPalettes }
   })
-  projects = projectsArray
-  console.log(projects)
+  
   appendProjects(projectsArray) 
 }
 
 const appendProjects = (projectsArray) => {
+  projects = projectsArray
   projectsArray.forEach((project, index) => {
-    $('.project-holder').append(`<h5>${project.name}</h5> <div class='project ${project.name}'></div>`)
+    $('.project-holder').append(`<h5>${project.name}</h5>
+     <div class='project ${project.name}'></div>`)
     project.palettes.forEach(palette => {
       $(`.${project.name}`).append(`
-      <h4>${palette.name}</h4>
-      <div class='palette-card'>
-        <div class='palette-color ${palette.name}color1'></div>
-        <div class='palette-color ${palette.name}color2'></div>
-        <div class='palette-color ${palette.name}color3'></div>
-        <div class='palette-color ${palette.name}color4'></div>
-        <div class='palette-color ${palette.name}color5'></div>
+      <div class='palette'>
+        <div class='delete-btn'></div>
+        <h4>${palette.name}</h4>
+        <div class='palette-card'>
+          <div class='palette-color ${palette.name}color1'></div>
+          <div class='palette-color ${palette.name}color2'></div>
+          <div class='palette-color ${palette.name}color3'></div>
+          <div class='palette-color ${palette.name}color4'></div>
+          <div class='palette-color ${palette.name}color5'></div>
+        </div>
       </div>`)
       $(`.${palette.name}color1`).css('background-color', palette.color_1)
       $(`.${palette.name}color2`).css('background-color', palette.color_2)
@@ -134,8 +138,26 @@ const postProject = async (event) => {
   fetchProjects()
 }
 
+const deletePalette = async (event) => {
+  if(event.target.className === 'delete-btn'){
+    const paletteName = $(event.target).next().text()
 
+    const projectName = $(event.target).parent().parent().prev().text()
 
+    const foundProject = projects.find(project => project.name === projectName)
+
+    const palettesArray = foundProject.palettes
+
+    const foundPalette = palettesArray.find(palette => palette.name === paletteName)
+
+    console.log(foundPalette)
+
+    fetch(`/api/v1/palettes/${foundPalette.id}`, {
+      method: 'DELETE'})
+
+    $(event.target).parent().remove()
+  }
+}
 
 
 $(document).ready(() =>{
@@ -147,3 +169,4 @@ $('.menu-icon').on('click', openMenu)
 $('.generate-btn').on('click', generatePalette);
 $('.padlock').on('click', changeLock)
 $('.save-btn').on('click', postProject)
+$('.project-holder').on('click', deletePalette)
