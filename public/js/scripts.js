@@ -150,8 +150,6 @@ const deletePalette = async (event) => {
 
     const foundPalette = palettesArray.find(palette => palette.name === paletteName)
 
-    console.log(foundPalette)
-
     fetch(`/api/v1/palettes/${foundPalette.id}`, {
       method: 'DELETE'})
 
