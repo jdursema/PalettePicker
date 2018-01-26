@@ -26,6 +26,8 @@ h1 span{
 
 }
 
+
+
 .card{
   height: 50vh;
   width: 18vw;
@@ -208,4 +210,13 @@ h4{
   background-repeat: no-repeat;
   background-size: 90%;
   margin-bottom: 8%
+}
+
+.delete-btn{
+  background-image: url('./cancel-mark.svg');
+  background-size: cover;
+  width: 10px;
+  height: 10px;
+  float: right;
+  margin: 3%
 }
