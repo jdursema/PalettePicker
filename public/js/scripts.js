@@ -54,12 +54,15 @@ const fetchPalettes = async(projectsArray) => {
   mapPalettesToProject(projectsArray, paletteResponse.palettes)
 }
 
-const mapPalettesToProject =(projects, palettes) => {
+const mapPalettesToProject = (projects, palettes) => {
   const projectsArray = projects.map((project) => {
     const filteredPalettes = palettes.filter(palette => palette.project_id === project.id)
     return { ...project, palettes: filteredPalettes }
   })
+  projects = projectsArray
+  console.log(projects)
   appendProjects(projectsArray)
+  
 }
 
 const appendProjects = (projectsArray) => {
@@ -84,10 +87,36 @@ const appendProjects = (projectsArray) => {
   })
 }
 
-const postProject = (event) => {
+const postProject = async (event) => {
   event.preventDefault()
-  console.log($('.project-name-input'))
-  console.log
+  const projectName = $('.project-name-input').val()
+  const responseProjects = await fetch (`http://localhost:3000/api/v1/projects`)
+  const fetchedProjects= await responseProjects.json()
+  const projectsArray = fetchedProjects.projects
+  const existingProject = projectsArray.find(project => projectName === project.name)
+  const paletteObj = {
+    name: $('.palette-name-input').val(), 
+    color_1: $('#colorGen1').text(), 
+    color_2: $('#colorGen2').text(), 
+    color_3: $('#colorGen3').text(), 
+    color_4: $('#colorGen4').text(), 
+    color_5: $('#colorGen5').text() }
+    console.log(existingProject)
+
+  if(existingProject){
+    const newPalettePost = await fetch(`/api/v1/projects/${existingProject.id}/palettes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(paletteObj)
+    })
+
+  } else {
+    //post project then post palette
+  }
+
+  console.log($('.palette-name-input').val())
 }
 
 
