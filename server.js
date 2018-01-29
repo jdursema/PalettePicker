@@ -168,3 +168,5 @@ app.delete('/api/v1/palettes/:paletteId', (request, response) => {
 app.listen(app.get('port'), () => {
   console.log('is listening')
 })
+
+module.exports = app
