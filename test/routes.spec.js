@@ -112,10 +112,10 @@ describe('API Routes', () => {
     })
   })
   
-  describe('POST /api/v1/projects/33/palettes', () => {
+  describe('POST /api/v1/projects/1/palettes', () => {
     it('should create a new palette', () => {
       return chai.request(server)
-      .post('/api/v1/projects/33/palettes')
+      .post('/api/v1/projects/1/palettes')
       .send({
         name: 'Palette3',
         color_1: '#C1DBE3',
@@ -133,7 +133,7 @@ describe('API Routes', () => {
     })
     it('should not create a palette with missing data', () => {
       return chai.request(server)
-      .post('/api/v1/projects/33/palettes')
+      .post('/api/v1/projects/1/palettes')
       .send({
         color_1: '#C1DBE3',
         color_2: '#C7DFC5',
@@ -150,10 +150,10 @@ describe('API Routes', () => {
     })
   })
   
-  describe('GET /api/v1/projects/33/palettes', () => {
+  describe('GET /api/v1/projects/1/palettes', () => {
     it('should get the palettes from a specific project', () => {
       return chai.request(server)
-      .get('/api/v1/projects/33/palettes')
+      .get('/api/v1/projects/1/palettes')
       .then(response => {
         response.should.have.status(200)
         response.body.palette.should.be.a('array')
@@ -182,10 +182,10 @@ describe('API Routes', () => {
     })
   })
   
-  describe('DELETE /api/v1/palettes/57', () => {
+  describe('DELETE /api/v1/palettes/2', () => {
     it('should delete a palette', () => {
       return chai.request(server)
-      .delete('/api/v1/palettes/57')
+      .delete('/api/v1/palettes/2')
       .then(response => {
         response.should.have.status(202)
       })

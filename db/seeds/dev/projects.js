@@ -6,18 +6,18 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
 
         knex('projects').insert({
-          name: 'Project 1'
+          name: 'Project1'
         }, 'id')
         .then(project => {
           return knex('palettes').insert([
-            {name: 'Palette 1', 
+            {name: 'Palette1', 
             project_id: project[0], 
             color_1: '#FFFFFF',
             color_2: '#FFFFFF',
             color_3: '#FFFFFF',
             color_4: '#FFFFFF',
             color_5: '#FFFFFF'},
-            {name: 'Palette 2', 
+            {name: 'Palette2', 
             project_id: project[0], 
             color_1: '#FFFFFF',
             color_2: '#FFFFFF',

@@ -1,22 +1,24 @@
 body{
-  background-color: #C2C3BE;
+  background-image: url('./Cardboard1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 h1{
   font-family: 'Alfa Slab One', cursive;
-  color: #404142;
+  color: #2A2B2A;
   font-size: 48px;
   margin: 1%;
 }
 
 h1 span{
-  color: #A3A49F;
+  color: #E8F7EE;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
 }
 
 .line{
-  color: #B53B38;
+  color: #972D07;
 }
 
 .color-generator{
@@ -32,22 +34,44 @@ h1 span{
   height: 50vh;
   width: 18vw;
   background-image: url('./paper.jpg');
-  box-shadow: 5px 5px 5px #A3A49F;
+  box-shadow: 5px 5px 5px #865B2F;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+
+@-webkit-keyframes swinging{
+  25%{transform: rotate(-5deg)}
+  75%{transform: rotate(5deg)}
+}
+@keyframes swinging{
+  25%{transform: rotate(-5deg)}
+  75%{transform: rotate(5deg)}
+}
+
+.card:hover { 
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-animation: swinging 3.5s ease-in-out forwards infinite;
+    animation: swinging 3.5s ease-in-out forwards infinite;
+}
+
 button{
-  background-color: #404142;
+  background-color: #2A2B2A;
   color: #A3A49F;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  margin: 2%;
-  padding: 1% 8%;
   font-size: 24px;
+  padding: 1% 0;
   text-transform: uppercase;
+  border: none;
+  width: 350px;
+}
+
+.generate-btn{
+  margin: 3%;
 }
 
 button:hover{
@@ -55,7 +79,7 @@ button:hover{
 }
 
 button:active{
-  background-color: #B53B38;
+  background-color: #972D07;
 }
 
 .btn-div{
@@ -67,13 +91,14 @@ form{
   display: flex;
   direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 input{
-  background-color: #DFDFDF;
+  background-color: #E8F7EE;
   font-size: 24px;
   font-family: 'Open Sans', sans-serif;
+  width: 350px;
 }
 
 select{
@@ -83,7 +108,7 @@ select{
 }
 
 .projects-hiden{
-  background-image: url('./Cardboard1.jpg');
+  background-color: #972D07;
   background-size: cover;
   width: 3vw;
   height: 100vh;
@@ -101,7 +126,7 @@ select{
 }
 
 .projects-shown {
-  background-image: url('./Cardboard1.jpg');
+  background-color: #972D07;
   background-size: cover;
   width: 40vw;
   height: 100vh;
@@ -136,7 +161,7 @@ select{
 }
 
 .color-name{
-  border-top: #B53B38 2px solid;
+  border-top: #972D07 2px solid;
   font-family: 'Open Sans', sans-serif;
   color: #A3A49F;
   font-weight: 300;
@@ -146,7 +171,10 @@ select{
 
 h3{
   font-family: 'Alfa Slab One', cursive;
+  color: #E8F7EE;
   font-size: 36px;
+  letter-spacing: 2px;
+  font-weight: 300;
 }
 
 .all-projects{
@@ -219,4 +247,12 @@ h4{
   height: 10px;
   float: right;
   margin: 3%
+}
+
+h5{
+  font-family: 'Open Sans', sans-serif;
+  color: #E8F7EE;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 300;
 }

@@ -19,7 +19,6 @@ const generatePalette = () => {
       $(this).next().text(color)
     }
   })
-
 }
 
 const openMenu = () => {
@@ -48,7 +47,6 @@ const fetchProjects = async() => {
 }
 
 const fetchPalettes = async(projectsArray) => {
-
   const initialFetch = await fetch (`/api/v1/palettes`)
   const paletteResponse = await initialFetch.json()
   mapPalettesToProject(projectsArray, paletteResponse.palettes)
@@ -59,44 +57,45 @@ const mapPalettesToProject = (projects, palettes) => {
     const filteredPalettes = palettes.filter(palette => palette.project_id === project.id)
     return { ...project, palettes: filteredPalettes }
   })
-  
-  appendProjects(projectsArray) 
+  appendProjects(projectsArray)
 }
 
 const appendProjects = (projectsArray) => {
   projects = projectsArray
   projectsArray.forEach((project, index) => {
-    $('.project-holder').append(`<h5>${project.name}</h5>
-     <div class='project ${project.name}'></div>`)
+    const removeChars = RegExp(/\W+/)
+    const projectName = project.name.replace(removeChars, '')
+    $('.project-holder').append(`<h5>${projectName}</h5>
+     <div class='project ${projectName}'></div>`)
     project.palettes.forEach(palette => {
+      const paletteName= palette.name.replace(removeChars, '')
       $(`.${project.name}`).append(`
       <div class='palette'>
         <div class='delete-btn'></div>
-        <h4>${palette.name}</h4>
-        <div class='palette-card'>
-          <div class='palette-color ${palette.name}color1'></div>
-          <div class='palette-color ${palette.name}color2'></div>
-          <div class='palette-color ${palette.name}color3'></div>
-          <div class='palette-color ${palette.name}color4'></div>
-          <div class='palette-color ${palette.name}color5'></div>
+        <h4>${paletteName}</h4>
+        <div class='palette-card ${paletteName}'>
+          <div class='palette-color color1'></div>
+          <div class='palette-color color2'></div>
+          <div class='palette-color color3'></div>
+          <div class='palette-color color4'></div>
+          <div class='palette-color color5'></div>
         </div>
       </div>`)
-      $(`.${palette.name}color1`).css('background-color', palette.color_1)
-      $(`.${palette.name}color2`).css('background-color', palette.color_2)
-      $(`.${palette.name}color3`).css('background-color', palette.color_3)
-      $(`.${palette.name}color4`).css('background-color', palette.color_4)
-      $(`.${palette.name}color5`).css('background-color', palette.color_5)
+      
+      $(`.${palette.name}`).find('.color1').css('background-color', palette.color_1)
+      $(`.${palette.name}`).find('.color2').css('background-color', palette.color_2)
+      $(`.${palette.name}`).find('.color3').css('background-color', palette.color_3)
+      $(`.${palette.name}`).find('.color4').css('background-color', palette.color_4)
+      $(`.${palette.name}`).find('.color5').css('background-color', palette.color_5)
     })
   })
 }
 
 const postProject = async (event) => {
   event.preventDefault()
-  const projectName = $('.project-name-input').val()
-  const responseProjects = await fetch (`/api/v1/projects`)
-  const fetchedProjects= await responseProjects.json()
-  const projectsArray = fetchedProjects.projects
-  const existingProject = projectsArray.find(project => projectName === project.name)
+  const removeChars = RegExp(/\W+/)
+  const projectName = $('.project-name-input').val().replace(removeChars, '')
+  const existingProject = projects.find(project => projectName === project.name)
   const paletteObj = {
     name: $('.palette-name-input').val(), 
     color_1: $('#colorGen1').text(), 
@@ -114,13 +113,13 @@ const postProject = async (event) => {
       body: JSON.stringify({name: projectName})
     })
     const response = await newProjectPost.json()
-    console.log(response)
+    const paletteName= paletteObj.name.replace(removeChars, '')
     const newPalettePost = await fetch(`/api/v1/projects/${response.id}/palettes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(paletteObj)
+      body: JSON.stringify({...paletteObj, name: paletteName})
     })
 
   } else {
@@ -141,18 +140,12 @@ const postProject = async (event) => {
 const deletePalette = async (event) => {
   if(event.target.className === 'delete-btn'){
     const paletteName = $(event.target).next().text()
-
     const projectName = $(event.target).parent().parent().prev().text()
-
     const foundProject = projects.find(project => project.name === projectName)
-
     const palettesArray = foundProject.palettes
-
     const foundPalette = palettesArray.find(palette => palette.name === paletteName)
-
     fetch(`/api/v1/palettes/${foundPalette.id}`, {
       method: 'DELETE'})
-
     $(event.target).parent().remove()
   }
 }
@@ -162,7 +155,6 @@ $(document).ready(() =>{
   generatePalette()
   fetchProjects()
 })
-
 $('.menu-icon').on('click', openMenu)
 $('.generate-btn').on('click', generatePalette);
 $('.padlock').on('click', changeLock)
