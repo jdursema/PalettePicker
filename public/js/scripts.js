@@ -36,14 +36,18 @@ const changeLock = (event) => {
 }
 
 const fetchProjects = async() => {
-  const initialFetch = await fetch('/api/v1/projects', {
+  try {const initialFetch = await fetch('/api/v1/projects', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
   })
   const projectResponse = await initialFetch.json()
-  fetchPalettes(projectResponse.projects)
+  console.log(projectResponse)
+  fetchPalettes(projectResponse.projects)}
+  catch(error){
+    throw error
+  }
 }
 
 const fetchPalettes = async(projectsArray) => {
@@ -67,7 +71,7 @@ const appendProjects = (projectsArray) => {
     const projectName = project.name.replace(removeChars, '')
     $('.project-holder').append(`<h5>${projectName}</h5>
      <div class='project ${projectName}'></div>`)
-    project.palettes.forEach(palette => {
+     projectsArray.palettes.forEach(palette => {
       const paletteName= palette.name.replace(removeChars, '')
       $(`.${project.name}`).append(`
       <div class='palette'>
