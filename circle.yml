@@ -10,7 +10,7 @@ database:
   override:
     - sudo -u postgres psql -p 5432 -c "create database testprojects;"
     - knex migrate:latest
-    -knex seed:make test-data
+    - knex seed:make test-data
 
 test:
   override:
