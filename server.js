@@ -13,14 +13,14 @@ const environment = process.env.NODE_ENV || 'development';
 //have our app use the doc in the public directory
 app.use(express.static(path.join(__dirname, '/public')));
 
-const requireHTTPS = (request, response, next) => {
-  if(request.headers['x-forwarded-proto'] !== 'https'){
-    return response.redirect('https://' + request.get('host')+ request.url)
-  }
-  next();
-}
+// const requireHTTPS = (request, response, next) => {
+//   if(request.headers['x-forwarded-proto'] !== 'https'){
+//     return response.redirect('https://' + request.get('host')+ request.url)
+//   }
+//   next();
+// }
 
-app.use(requireHTTPS)
+// app.use(requireHTTPS)
 
 //
 const configuration = require('./knexfile')[environment]
