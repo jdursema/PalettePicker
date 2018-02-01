@@ -25,10 +25,7 @@ h1 span{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
 }
-
-
 
 .card{
   height: 50vh;
