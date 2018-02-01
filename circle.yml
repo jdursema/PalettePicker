@@ -10,3 +10,7 @@ database:
   override:
     - sudo -u postgres psql -p 5432 -c "create database testprojects;"
     - knex migrate: latest
+
+test:
+  override:
+    - mocha --exit
