@@ -8,4 +8,5 @@ environment:
 
 database: 
   override:
-    -knex migrate: latest
+    - sudo -u postgres psql -p 5432 -c "create database publications;"
+    - knex migrate: latest
