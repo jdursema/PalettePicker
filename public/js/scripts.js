@@ -1,3 +1,5 @@
+let projects;
+
 const generateColor = () => {
   let hex = '#'
   const values = 'ABCDEF0123456789';
@@ -62,6 +64,7 @@ const mapPalettesToProject = (projects, palettes) => {
 }
 
 const appendProjects = (projectsArray) => {
+  projects= projectsArray
   projectsArray.forEach((project) => {
     $('.project-holder').append(`
       <h5 class='project-name'>${project.name}</h5>
@@ -92,6 +95,8 @@ const appendProjects = (projectsArray) => {
 
 const postProject = async (event) => {
   event.preventDefault()
+  const projectName = $('.project-name-input').val()
+  const existingProject = projects.find(project => projectName === project.name)
   const paletteObj = {
     name: $('.palette-name-input').val(), 
     color_1: $('#colorGen1').text(), 
@@ -99,13 +104,6 @@ const postProject = async (event) => {
     color_3: $('#colorGen3').text(), 
     color_4: $('#colorGen4').text(), 
     color_5: $('#colorGen5').text() }
-  const projectName = $('.project-name-input').val()
-  const projectNames= []
-  const projectIds = []
-  $('.project-name').each((index, project)=> projectNames.push(project.innerHTML))
-  const existingProject = projectNames.find(name => name === projectName)
-  $('.project').each((index, id)=> projectIds.push($(id).attr('id')))
-  console.log(projectIds)
 
   if (!existingProject){
     const newProjectPost = await fetch('/api/v1/projects', {
@@ -116,6 +114,7 @@ const postProject = async (event) => {
       body: JSON.stringify({name: projectName})
     })
     const response = await newProjectPost.json()
+    const paletteName= paletteObj.name
     const newPalettePost = await fetch(`/api/v1/projects/${response.id}/palettes`, {
       method: 'POST',
       headers: {
